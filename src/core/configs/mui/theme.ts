@@ -9,10 +9,10 @@ const roboto = Roboto({
   display: 'swap'
 })
 
-export function Theme() {
+export function useTheme() {
   const [colorMode] = useColorMode()
 
-  let theme = createTheme({
+  const theme = createTheme({
     palette: {
       mode: colorMode
     },

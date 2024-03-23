@@ -1,5 +1,14 @@
-import Link from 'next/link'
+'use client'
+
+import { Button } from '@mui/material'
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
-  return <Link href="/dashboard">Dashboard</Link>
+  const router = useRouter()
+
+  return (
+    <div>
+      <Button onClick={() => router.push('/dashboard')}>Entrar</Button>
+    </div>
+  )
 }
