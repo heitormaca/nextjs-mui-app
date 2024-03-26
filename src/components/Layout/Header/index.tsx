@@ -1,30 +1,20 @@
 'use client'
 import { useState } from 'react'
-import {
-  AppBar,
-  Box,
-  Container,
-  IconButton,
-  Menu,
-  MenuItem,
-  Toolbar,
-  Typography
-} from '@mui/material'
+import { AppBar, Box, Container, IconButton, Toolbar } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import UserMenu from './components/UserMenu'
 import Logo from '@/components/_commons/Logo'
+import MobileDrawerMenu from './components/MobileDrawerMenu'
+import { HeaderProps } from './Header.types'
 
-export default function Header() {
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null)
+export default function Header({
+  handleListItemClick,
+  selectedIndex
+}: HeaderProps) {
+  const [open, setOpen] = useState(false)
 
-  const pages = ['Products', 'Pricing', 'Blog']
-
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget)
-  }
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null)
+  const toggleDrawer = (newOpen: boolean) => () => {
+    setOpen(newOpen)
   }
 
   return (
@@ -40,35 +30,17 @@ export default function Header() {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              onClick={toggleDrawer(true)}
               color="inherit"
             >
               <MenuIcon />
             </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left'
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left'
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' }
-              }}
-            >
-              {pages.map(page => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+            <MobileDrawerMenu
+              open={open}
+              onClose={toggleDrawer(false)}
+              selectedIndex={selectedIndex}
+              handleListItemClick={handleListItemClick}
+            />
           </Box>
           <Box
             sx={{

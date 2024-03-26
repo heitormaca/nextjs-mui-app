@@ -9,7 +9,7 @@ export default function Logo() {
         variant="h5"
         noWrap
         component="a"
-        href="#app-bar-with-responsive-menu"
+        href="/dashboard"
         sx={{
           mr: 2,
           flexGrow: 1,
