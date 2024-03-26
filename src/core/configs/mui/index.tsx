@@ -9,13 +9,11 @@ import { ColorModeProvider } from '@/core/context/ColorModeContext/ColorModeCont
 export function MUIConfigProvider(props: PropsWithChildren) {
   const theme = useTheme()
   return (
-    <ColorModeProvider>
-      <AppRouterCacheProvider>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          {props.children}
-        </ThemeProvider>
-      </AppRouterCacheProvider>
-    </ColorModeProvider>
+    <AppRouterCacheProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        {props.children}
+      </ThemeProvider>
+    </AppRouterCacheProvider>
   )
 }

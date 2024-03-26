@@ -17,15 +17,23 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     setColorMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'))
   }
 
+  function darkMode() {
+    setColorMode('dark')
+  }
+
+  function lightMode() {
+    setColorMode('light')
+  }
+
   return (
-    <ColorModeContext.Provider value={{ colorMode, toggleColorMode }}>
+    <ColorModeContext.Provider value={{ colorMode, lightMode, darkMode }}>
       {props.children}
     </ColorModeContext.Provider>
   )
 }
 
 export function useColorMode(): UserColorModeProviderReturn {
-  const { colorMode, toggleColorMode } = useContext(ColorModeContext)
+  const { colorMode, darkMode, lightMode } = useContext(ColorModeContext)
 
-  return [colorMode, toggleColorMode]
+  return [colorMode, darkMode, lightMode]
 }

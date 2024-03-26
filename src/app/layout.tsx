@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 import { MUIConfigProvider } from '@/core/configs/mui'
+import { ColorModeProvider } from '@/core/context/ColorModeContext/ColorModeContext.provider'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <MUIConfigProvider>{children}</MUIConfigProvider>
+        <ColorModeProvider>
+          <MUIConfigProvider>{children}</MUIConfigProvider>
+        </ColorModeProvider>
       </body>
     </html>
   )

@@ -2,11 +2,12 @@ import { PropsWithChildren } from 'react'
 
 export type ColorModeContextParams = {
   colorMode: ColorMode
-  toggleColorMode: () => void
+  darkMode: () => void
+  lightMode: () => void
 }
 
 export type ColorMode = 'light' | 'dark'
 
 export type ColorModeProviderProps = PropsWithChildren<unknown>
 
-export type UserColorModeProviderReturn = [ColorMode, () => void]
+export type UserColorModeProviderReturn = [ColorMode, () => void, () => void]
