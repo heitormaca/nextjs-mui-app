@@ -40,7 +40,5 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
 }
 
 export function useColorMode(): UserColorModeProviderReturn {
-  const { colorMode, darkMode, lightMode } = useContext(ColorModeContext)
-
-  return [colorMode, darkMode, lightMode]
+  return useContext(ColorModeContext)
 }

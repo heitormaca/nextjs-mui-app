@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-
 import { MUIConfigProvider } from '@/core/configs/mui'
 import { ColorModeProvider } from '@/core/context/ColorModeContext/ColorModeContext.provider'
 

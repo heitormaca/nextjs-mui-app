@@ -10,7 +10,7 @@ const roboto = Roboto({
 })
 
 export function useTheme() {
-  const [colorMode] = useColorMode()
+  const { colorMode } = useColorMode()
 
   const theme = createTheme({
     palette: {

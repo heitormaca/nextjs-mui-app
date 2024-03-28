@@ -1,16 +1,12 @@
 'use client'
 import { useState } from 'react'
-import { AppBar, Box, Container, IconButton, Toolbar } from '@mui/material'
+import { AppBar, Box, IconButton, Toolbar } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import UserMenu from './components/UserMenu'
 import Logo from '@/components/_commons/Logo'
 import MobileDrawerMenu from './components/MobileDrawerMenu'
-import { HeaderProps } from './Header.types'
 
-export default function Header({
-  handleListItemClick,
-  selectedIndex
-}: HeaderProps) {
+export default function Header() {
   const [open, setOpen] = useState(false)
 
   const toggleDrawer = (newOpen: boolean) => () => {
@@ -18,8 +14,8 @@ export default function Header({
   }
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar position="fixed">
+      <Box sx={{ paddingX: 3 }}>
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Logo />
@@ -35,12 +31,7 @@ export default function Header({
             >
               <MenuIcon />
             </IconButton>
-            <MobileDrawerMenu
-              open={open}
-              onClose={toggleDrawer(false)}
-              selectedIndex={selectedIndex}
-              handleListItemClick={handleListItemClick}
-            />
+            <MobileDrawerMenu open={open} onClose={toggleDrawer(false)} />
           </Box>
           <Box
             sx={{
@@ -50,10 +41,9 @@ export default function Header({
           >
             <Logo />
           </Box>
-
           <UserMenu />
         </Toolbar>
-      </Container>
+      </Box>
     </AppBar>
   )
 }

@@ -1,5 +1,5 @@
 'use client'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import {
   Box,
   Container,
@@ -17,6 +17,7 @@ import { menuList } from '@/app/(app)/menuList'
 
 export default function MobileDrawerMenu(props: MobileDrawerMenuProps) {
   const router = useRouter()
+  const pathname = usePathname()
 
   const windowWidth = window.innerWidth
 
@@ -45,11 +46,8 @@ export default function MobileDrawerMenu(props: MobileDrawerMenuProps) {
               {menuList.map(item => (
                 <ListItem key={item.title} disablePadding>
                   <ListItemButton
-                    selected={props.selectedIndex === item.path}
-                    onClick={event => {
-                      router.push(`${item.path}`)
-                      props.handleListItemClick(event, item.path)
-                    }}
+                    selected={pathname === item.path}
+                    onClick={() => router.push(`${item.path}`)}
                   >
                     <ListItemIcon>{item.icon}</ListItemIcon>
                     <ListItemText primary={item.title} />

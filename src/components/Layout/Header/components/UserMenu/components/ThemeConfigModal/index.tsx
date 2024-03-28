@@ -7,7 +7,7 @@ import light from '../../../../../../../../public/theme-light.svg'
 import dark from '../../../../../../../../public/theme-dark.svg'
 
 export default function ThemeConfigModal(props: ThemeConfigModalProps) {
-  const [colorMode, darkMode, lightMode] = useColorMode()
+  const { colorMode, darkMode, lightMode } = useColorMode()
 
   const isDarkMode = colorMode === 'dark'
 
