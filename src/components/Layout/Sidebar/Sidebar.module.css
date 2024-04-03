@@ -1,0 +1,44 @@
+.sidebarListItemButtonOpen {
+  justify-content: initial ;
+}
+
+.sidebarListItemButtonCollapse {
+  justify-content: center;
+}
+
+.sidebarListItemButton {
+  @media screen and (min-width: 600px) and (max-width: 900px)  {
+    justify-content: center;
+
+  }
+}
+
+.sidebarListItemIconOpen {
+  margin-right: 24px;
+}
+
+.sidebarListItemIconCollapse {
+  margin-right: auto;
+}
+
+.sidebarListItemIcon {
+  @media screen and (min-width: 600px) and (max-width: 900px)  {
+    margin-right: auto;
+
+  }
+}
+
+.sidebarListItemTextOpen {
+  display: flex;
+}
+
+.sidebarListItemTextCollapse {
+  display: none;
+}
+
+.sidebarListItemText {
+  @media screen and (min-width: 600px) and (max-width: 900px)  {
+    display: none; 
+
+  }
+}

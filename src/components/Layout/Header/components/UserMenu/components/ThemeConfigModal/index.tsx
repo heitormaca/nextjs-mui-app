@@ -1,15 +1,15 @@
 import Image from 'next/image'
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button, Typography, useColorScheme } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
-import { useColorMode } from '@/core/context/ColorModeContext/ColorModeContext.provider'
 import Modal from '@/components/_commons/Modal'
 import light from '../../../../../../../../public/theme-light.svg'
 import dark from '../../../../../../../../public/theme-dark.svg'
+import { toogleColorScheme } from '@/core/configs/next/cookies/colorScheme'
 
 export default function ThemeConfigModal(props: ThemeConfigModalProps) {
-  const { colorMode, darkMode, lightMode } = useColorMode()
+  const { colorScheme, setMode } = useColorScheme()
 
-  const isDarkMode = colorMode === 'dark'
+  const isDarkMode = colorScheme === 'dark'
 
   return (
     <Modal
@@ -25,7 +25,13 @@ export default function ThemeConfigModal(props: ThemeConfigModalProps) {
         </Typography>
         <Grid container spacing={2} mt={1}>
           <Grid xs={6}>
-            <Button sx={{ padding: 0 }} onClick={() => lightMode()}>
+            <Button
+              sx={{ padding: 0 }}
+              onClick={() => {
+                toogleColorScheme('light')
+                setMode('light')
+              }}
+            >
               <Box
                 sx={{
                   border: '2px dashed transparent',
@@ -47,7 +53,13 @@ export default function ThemeConfigModal(props: ThemeConfigModalProps) {
             </Button>
           </Grid>
           <Grid xs={6}>
-            <Button sx={{ padding: 0 }} onClick={() => darkMode()}>
+            <Button
+              sx={{ padding: 0 }}
+              onClick={() => {
+                toogleColorScheme('dark')
+                setMode('dark')
+              }}
+            >
               <Box
                 sx={{
                   border: '2px dashed transparent',

@@ -19,12 +19,10 @@ export default function MobileDrawerMenu(props: MobileDrawerMenuProps) {
   const router = useRouter()
   const pathname = usePathname()
 
-  const windowWidth = window.innerWidth
-
   return (
     <Drawer open={props.open} onClose={props.onClose}>
       <Box
-        sx={{ width: windowWidth }}
+        sx={{ width: '100vw' }}
         role="presentation"
         onClick={() => props.onClose(false)}
       >
