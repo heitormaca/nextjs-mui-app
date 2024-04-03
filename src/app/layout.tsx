@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { MUIConfigProvider } from '@/core/configs/mui'
-import { CollapseProvider } from '@/core/context/CollapseContext/CollapseContext.provider'
 import { getColorScheme } from '../core/configs/next/cookies/colorScheme'
 
 export const metadata: Metadata = {
@@ -18,11 +17,7 @@ export default async function RootLayout({
   return (
     <html lang="en" data-mui-color-scheme={colorMode}>
       <body>
-        <CollapseProvider>
-          <MUIConfigProvider colorMode={colorMode}>
-            {children}
-          </MUIConfigProvider>
-        </CollapseProvider>
+        <MUIConfigProvider colorMode={colorMode}>{children}</MUIConfigProvider>
       </body>
     </html>
   )

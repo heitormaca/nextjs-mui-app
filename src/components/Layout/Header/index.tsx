@@ -8,12 +8,15 @@ import MobileDrawerMenu from './components/MobileDrawerMenu'
 import MenuOpenIcon from '@mui/icons-material/MenuOpen'
 import { HeaderProps } from './Header.types'
 import classes from './Header.module.css'
+import { toggleCollapse } from '@/core/configs/next/cookies/collapse'
 
-export default function Header({ menuCollapse, toggleCollapse }: HeaderProps) {
+export default function Header({ collapse }: HeaderProps) {
   const [open, setOpen] = useState(false)
 
-  const toggleDrawer = (newOpen: boolean) => () => {
-    setOpen(newOpen)
+  console.log(open)
+
+  const toggleDrawer = () => {
+    setOpen(prev => !prev)
   }
 
   return (
@@ -29,12 +32,12 @@ export default function Header({ menuCollapse, toggleCollapse }: HeaderProps) {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={toggleDrawer(true)}
+              onClick={toggleDrawer}
               color="inherit"
             >
               <MenuIcon />
             </IconButton>
-            <MobileDrawerMenu open={open} onClose={toggleDrawer(false)} />
+            <MobileDrawerMenu open={open} onClose={toggleDrawer} />
           </Box>
           <Box className={classes.headerIconButton} sx={{ flexGrow: 1 }}>
             <IconButton
@@ -42,12 +45,12 @@ export default function Header({ menuCollapse, toggleCollapse }: HeaderProps) {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={toggleCollapse}
+              onClick={() => toggleCollapse()}
               color="inherit"
             >
-              {!menuCollapse ? <MenuIcon /> : <MenuOpenIcon />}
+              {JSON.parse(collapse) ? <MenuIcon /> : <MenuOpenIcon />}
             </IconButton>
-            <MobileDrawerMenu open={open} onClose={toggleDrawer(false)} />
+            <MobileDrawerMenu open={open} onClose={toggleDrawer} />
           </Box>
           <Box
             className={classes.headerLogo}

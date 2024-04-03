@@ -1,3 +1,3 @@
 export type SidebarProps = {
-  open: boolean
+  collapse: boolean
 }

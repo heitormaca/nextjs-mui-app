@@ -11,19 +11,15 @@ import { menuList } from '@/app/(app)/menuList'
 import { usePathname, useRouter } from 'next/navigation'
 import styles from './Sidebar.module.css'
 
-export default function Sidebar({ open }: SidebarProps) {
+export default function Sidebar({ collapse }: SidebarProps) {
   const router = useRouter()
   const pathname = usePathname()
 
-  const handleSidebarListItemButtonOpen = open
-    ? styles.sidebarListItemButtonOpen
-    : styles.sidebarListItemButtonCollapse
-
-  const handleSidebarListItemIconOpen = open
+  const handleSidebarListItemIconOpen = !collapse
     ? styles.sidebarListItemIconOpen
     : styles.sidebarListItemIconCollapse
 
-  const handleListItemTextOpen = open
+  const handleListItemTextOpen = !collapse
     ? styles.sidebarListItemTextOpen
     : styles.sidebarListItemTextCollapse
 
@@ -32,7 +28,8 @@ export default function Sidebar({ open }: SidebarProps) {
       {menuList.map(item => (
         <ListItem key={item.path} disablePadding sx={{ display: 'block' }}>
           <ListItemButton
-            className={`${styles.sidebarListItemButton} ${handleSidebarListItemButtonOpen} `}
+            data-collapse={collapse}
+            className={styles.sidebarListItemButton}
             sx={{
               minHeight: 48,
               px: 2.5

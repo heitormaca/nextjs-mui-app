@@ -1,23 +1,22 @@
-'use client'
 import { Box } from '@mui/material'
 import Header from '@/components/Layout/Header'
 import Sidebar from '@/components/Layout/Sidebar'
-import { useCollapse } from '@/core/context/CollapseContext/CollapseContext.provider'
 import styles from './Layout.module.css'
+import { getCollapse } from '@/core/configs/next/cookies/collapse'
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children
 }: {
   children: React.ReactNode
 }) {
-  const { collapse, toggleCollapse } = useCollapse()
+  const collapse = await getCollapse()
 
   return (
     <main>
-      <Header menuCollapse={collapse} toggleCollapse={toggleCollapse} />
+      <Header collapse={collapse} />
       <Box className={styles.contentBox} sx={{ display: 'flex' }}>
         <Box className={styles.boxSidebar}>
-          <Sidebar open={collapse} />
+          <Sidebar collapse={JSON.parse(collapse)} />
         </Box>
 
         <Box sx={{ flex: 1 }}>
